@@ -43,7 +43,7 @@ def golf(d):
     s+=q.pop()
    else:
     s+=q[-1]
-return s
+ return s
 
 # letter_queue(("POP", "POP"))
 
