@@ -1,3 +1,4 @@
+# 1 star solution
 
 def letter_queue(commands):
     queue = ""
@@ -12,6 +13,37 @@ def letter_queue(commands):
             queue += command.split(" ")[1]
     print(queue)
     return queue
+
+# 2 stars solution
+
+def golf(cs):
+ u=0
+ t=[]
+ for c in cs:
+  c=c.split(" ")
+  if "O" in c[0]:
+   try:u+=int(t[-1])
+   except Exception:u=+u
+   if t:t.pop(-1)
+  elif("U" in c[0]):t+=c[1]
+  else:
+   try:u+=int(t[-1])
+   except Exception:u=+u
+ return u
+
+# 3 stars solution
+
+def golf(d):
+ q=[];s=0
+ for c in d:
+  if "U" in c:
+   q+=[int(c[-1])]
+  elif len(q):
+   if "O" in c:
+    s+=q.pop()
+   else:
+    s+=q[-1]
+return s
 
 # letter_queue(("POP", "POP"))
 
