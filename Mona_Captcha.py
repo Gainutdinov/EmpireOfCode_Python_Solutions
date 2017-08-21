@@ -5,9 +5,12 @@ FONT = ("--X--XXX-XXX-X-X-XXX--XX-XXX-XXX--XX-XX--"
         "--X--XXX-XXX---X-XX---XX-X---XXX-XX---XX-")
 
 
+
+
+
 def recognize(image):
     #print([item[1] for item in image])
-    #print(list(zip(*image))) best variant
+    #print(list(zip(*image))) compact variant variant
     zero= [(1,1,1,1,0),
            (1,0,0,0,1),
            (0,1,1,1,1)]
@@ -38,23 +41,35 @@ def recognize(image):
     nine =[(0,1,1,0,1),
            (1,0,1,0,1),
            (1,1,1,1,0)]
-    list_numbers = [zero, one, two, three, four, five, six, seven, eight, nine]
+    model_numbers = [zero, one, two, three, four, five, six, seven, eight, nine]
+    answer = ''
     Listing = list(zip(*image))
-    OutputList = list(filter(lambda x: x!=(0, 0, 0, 0, 0), Listing))  #remove empty tuples from list
+    print(Listing)
+    
+    OutputList = Listing[1:-1]
+    #OutputList[:3]
+    #OutputList = list(filter(lambda x: x!=(0, 0, 0, 0, 0), Listing))  #remove empty tuples from list
     print(OutputList)
-    for number in zip(OutputList[0::3],OutputList[1::3],OutputList[2::3]): #some_list[start:stop:step]
-        for n in number: # first line of the number, after that we start comparing with other numbers
-                flag = 0 #if greater than 1 go to the next number
-            for n in 
-          print('\n')
-    for number in list_numbers:
-        pass
-        #print(number)
-       
-    return 1
+    for number in zip(OutputList[0::3],OutputList[1::3],OutputList[2::3]):#some_list[start:stop:step]
+        index = 0
+        flag=0
+        for guess in model_numbers:
+            for a,b in zip(guess,number):
+                for x,y in zip(a,b):
+                    if x!=y:
+                        flag += 1
+            if flag>1:
+                pass
+            else:
+                answer+=str(index)
+                break
+            index += 1
+            flag = 0 
+    print(answer)
+    return int(answer)
 
-recognize([[0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0],
-           [0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
-           [0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0],
-           [0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0],
-           [0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0]])
+recognize ([[0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0], 
+            [0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0], 
+            [0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0], 
+            [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], 
+            [0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0]])
