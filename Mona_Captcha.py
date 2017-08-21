@@ -44,12 +44,15 @@ def recognize(image):
     model_numbers = [zero, one, two, three, four, five, six, seven, eight, nine]
     answer = ''
     Listing = list(zip(*image))
-    print(Listing)
+    #print(Listing)
     
-    OutputList = Listing[1:-1]
-    #OutputList[:3]
+    del Listing[::4]
+    #print(Listing[::4], "OutputList")
+    OutputList = Listing
+    #print(OutputList)
+    
     #OutputList = list(filter(lambda x: x!=(0, 0, 0, 0, 0), Listing))  #remove empty tuples from list
-    print(OutputList)
+
     for number in zip(OutputList[0::3],OutputList[1::3],OutputList[2::3]):#some_list[start:stop:step]
         index = 0
         flag=0
@@ -65,7 +68,7 @@ def recognize(image):
                 break
             index += 1
             flag = 0 
-    print(answer)
+    #print(answer)
     return int(answer)
 
 recognize ([[0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0], 
