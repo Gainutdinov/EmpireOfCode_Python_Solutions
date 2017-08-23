@@ -1,4 +1,3 @@
-
 def tell_number(num):
     d = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
          6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten',
@@ -12,7 +11,12 @@ def tell_number(num):
     b = m * 1000
     t = b * 1000
 
+    if (num < 0):
+        return 'minus ' + tell_number(num*(-1))
+
     assert(0 <= num)
+
+    
 
     if (num < 20):
         return d[num]
@@ -33,13 +37,10 @@ def tell_number(num):
         if num % k == 0:
             return tell_number(num // k) + ' thousand'
         else:
-            return tell_number(num // k) + ' thousand, ' + tell_number(num % k)
+            return tell_number(num // k) + ' thousand ' + tell_number(num % k)
 
     if (num < b):
         if (num % m) == 0:
             return tell_number(num // m) + ' million'
         else:
-            return tell_number(num // m) + ' million, ' + tell_number(num % m)
-
-
-print(tell_number(212).endswith(' '))
+            return tell_number(num // m) + ' million ' + tell_number(num % m)
