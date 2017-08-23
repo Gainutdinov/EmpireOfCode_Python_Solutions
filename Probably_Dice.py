@@ -3,29 +3,36 @@ def probability(dice_number, sides, target):
     s = target
     b = sides
     a = dice_number
-    n = b**a #all possible combinations
-    m = 0 # lucky combinations when sum of the dices equal to target
+    n = b**a  # all possible combinations
+    m = 0  # lucky combinations when sum of the dices equal to target
+    if s > (a * b):
+        return 0.0000
+    else:
+        def Lucky_combinations(Number_of_times, i):
+            if i == 0:
+                c = 1
+            else:
+                c = factorial(Number_of_times) / \
+                    (factorial(Number_of_times - i) * factorial(i))
+            return int(c)
 
-    def Lucky_combinations(Number_of_times, i):
-        if i == 0:
-            c = 1
-        else:
-            c = factorial(Number_of_times)/( factorial(Number_of_times-i) * factorial(i) )
-        return int(c)
-    
-    print(Lucky_combinations((2),(1)),"divide")
-    for index in range( 0, ((s-a)//b+1) ):
-        print(index)
-        m += (-1)**index*Lucky_combinations(a,index)*Lucky_combinations( (s-b*index-1),(a-1) )
+        # print(Lucky_combinations((2),(1)),"divide")
+        for index in range(0, ((s - a) // b + 1)):
+            # print(index)
+            m += (-1)**index * Lucky_combinations(a, index) * \
+                Lucky_combinations((s - b * index - 1), (a - 1))
 
-    print(m/n)
-    return 0.0
+        #print(round(m/n, 4))
+        return round(m / n, 4)
 
-probability(10, 10, 50)
+
+probability(1, 2, 999)
+
 
 def almost_equal(checked, correct, significant_digits=4):
     precision = 0.1 ** significant_digits
     return correct - precision < checked < correct + precision
+
 
 #    assert (almost_equal(probability(2, 6, 3), 0.0556)), "Basic example"
 #    assert (almost_equal(probability(2, 6, 4), 0.0833)), "More points"
