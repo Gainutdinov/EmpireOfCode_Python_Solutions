@@ -1,23 +1,18 @@
 def probability(sequence, step):
-    
-    def pearl_prob(white, black):
-        return white / (white+black)
-
     w = sequence.count('w')
     b = sequence.count('b')
-    #print(sequence, w, b)
+    s = step
+    def probability_finder(white, black, step):
+        white_prob = white / (white+black)
+        black_prob = 1 - white_prob
+        if step == 1:
+            return round(white_prob,2)
 
-    while (step!=1):
-        w_prob = pearl_prob(w, b)
-        b_prob = pearl_prob(b, w)      
-        
-        pick_white = w_prob * pearl_prob((w-1), (b+1))
-        pick_black = b_prob * pearl_prob((w+1), (b-1))
+        else:
+            pick_white = white_prob * probability_finder(white-1, black+1, step-1)
+            pick_black = black_prob * probability_finder(white+1, black-1, step-1)
+            return round((pick_white + pick_black),2)
 
-        step -= 1
-    
-    #print (pick_white + pick_black)
+    return probability_finder(w, b, s)
 
-    return (pick_white + pick_black)
-   
-probability('bbw', 3)
+print(probability('bbw', 3))
