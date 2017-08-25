@@ -16,7 +16,7 @@ def translate(phrase):
     for word in phrase.split(' '):
         result += from_bird_to_human(word) + ' '
     # print(result.rstrip())
-    return 0
+    return result.rstrip()
 
 
 translate("sooooso aaaaaaaaa")
