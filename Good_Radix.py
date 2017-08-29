@@ -1,29 +1,22 @@
 def good_radix(str_number):
-    k_base = {'0': 1, '1': 2, '2': 3, '3': 4, '4': 5, '5': 6, '6': 7, '7': 8, '8': 9, '9': 10,
-              'A': 11, 'B': 12, 'C': 13, 'D': 14, 'E': 15, 'F': 16, 'G': 17, 'H': 18,
-              'I': 19, 'J': 20, 'K': 21, 'L': 22, 'M': 23, 'N': 24, 'O': 25, 'P': 26,
-              'Q': 27, 'R': 28, 'S': 29, 'T': 30, 'U': 31, 'V': 32, 'W': 33, 'X': 34,
-              'Y': 35, 'Z': 36}
-
+    result = 0
+    num_alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     def converter(string, base):
-        num_alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        integer = 0
+        value_integ = 0
         for character in string:
-            assert character in num_alphabet, 'Found unknown character!'
-            value = num_alphabet.index(character)
-            assert value < base, 'Found digit outside base!'
-            integer *= base
-            integer += value
-        return integer
-    for character in k_base:
-        if character in str_number:
-            base = character
-    for k in range(k_base[base], 36 + 1):
-        decimal_form = converter(str_number, k)
-        if ((decimal_form) % (k - 1) == 0):
-            return k
-    return 0
-
+            value_integ *= base
+            value_integ += num_alphabet.index(character)
+        #print(value_integ)
+        return value_integ
+    for symbol in num_alphabet:
+        if symbol in str_number:
+            base_of = symbol
+    #print(range(k_base[base_of], 36 + 1))
+    for k in range(num_alphabet.index(base_of) + 1, 36 + 1):
+        if ((converter(str_number, k)) % (k - 1) == 0):
+            result = k
+            break
+    return result
 
 print(good_radix('18'))
 
