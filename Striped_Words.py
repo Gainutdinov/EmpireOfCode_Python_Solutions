@@ -45,8 +45,8 @@ def striped_words(text):
                 count +=1
             else:
                 not_stripe = ''
-    print(count)
-    return 0
+    #print(count)
+    return count
 
 striped_words("Dog,cat,mouse,bird.Human.")
 
