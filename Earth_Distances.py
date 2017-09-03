@@ -4,8 +4,8 @@ R = 6371
 
 def distance(first, second):
 
-    h1, w1 = first.replace(",", "").split(" ") #latitude, longitude
-    h2, w2 = second.replace(",", "").split(" ")
+    h1, w1 = first.replace(", ", " ").replace(",", " ").split(" ") #latitude, longitude
+    h2, w2 = second.replace(", ", " ").replace(",", " ").split(" ")
     #print(h1,w1,h2,w2)
     reg = r"(\d+)°(\d+)′(\d+)″(\D)"
 
