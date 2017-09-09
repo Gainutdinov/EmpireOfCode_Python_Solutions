@@ -36,3 +36,18 @@ def golf(radius):
     num_partial_tiles = num_partial_tiles * 4
     return num_complete_tiles, num_partial_tiles
     
+    # 2 star solution
+    
+import math
+def golf(r):
+ s=1.
+ d=int(math.ceil(r/s))
+ a=n=0
+ for i in range(d):
+  for j in range(d):
+   l,f=((i*s)**2+(j*s)**2)**0.5,(((i+1)*s)**2+((j+1)*s)**2)**0.5
+   if l>r:break 
+   elif f>r:n+=1
+   else:a+=1
+ a,n=a*4,n*4
+ return a,n
