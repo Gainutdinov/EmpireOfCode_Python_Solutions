@@ -38,16 +38,12 @@ def golf(radius):
     
     # 2 star solution
     
-import math
 def golf(r):
- s=1.
- d=int(math.ceil(r/s))
- a=n=0
- for i in range(d):
+ a=n=i=0;d=int(-(-r//1))
+ while i<d:
   for j in range(d):
-   l,f=((i*s)**2+(j*s)**2)**0.5,(((i+1)*s)**2+((j+1)*s)**2)**0.5
-   if l>r:break 
-   elif f>r:n+=1
-   else:a+=1
- a,n=a*4,n*4
+   if i*i+j*j>r*r:break
+   if (i+1)**2+(j+1)**2>r*r:n+=4
+   else:a+=4
+  i+=1
  return a,n
